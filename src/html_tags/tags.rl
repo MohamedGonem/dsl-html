@@ -1,12 +1,12 @@
 get std::display::len
 get format, concat from std::str
-get std::array::arr_last
-get std::types::to_string
+get std::array::arr_is_empty
+get to_bool, to_string from std::types
 
 // class builder transforms array of strings to 'class="class_1 class_2 ..."'
 fn class_builder(arr[string] classes) -> string {
     // initializing the result
-    dec string result = format("class={}",'"'.to_string())
+    dec string result = format(" class={}",'"'.to_string())
     // enumurate makeshift
     dec int max_index = classes.len() - 1
     dec int current_index = 0
@@ -26,11 +26,21 @@ fn class_builder(arr[string] classes) -> string {
 }
 
 fn id_builder(string id) -> string {
-    return "id={}{}{}".format('"'.to_string(), id, '"'.to_string())
+    return " id={}{}{}".format('"'.to_string(), id, '"'.to_string())
 }
 
 dec fn generic_tag = fn(string tag, arr[string] classes, string id, string body) -> string {
-    dec string class = classes.class_builder()
-    dec string id = id.id_builder()
-    return format("<{} {} {}>{}</{}>", tag, class, id, body, tag)
+    dec string class = ""
+    if (!classes.arr_is_empty()) {
+        class = classes.class_builder()
+    }
+    dec string fid = ""
+    if (id.to_bool()) {
+        fid = id.id_builder()
+    }
+    dec string fbody = ""
+    if (body.to_bool()) {
+        fbody = body
+    }
+    return format("<{}{}{}>{}</{}>", tag, class, fid, fbody, tag)
 }
