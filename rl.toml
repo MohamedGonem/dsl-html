@@ -1,0 +1,5 @@
+[project]
+name = "dsl-html"
+rl-version = "0.1.3"
+version = "0.0.1"
+entry = "src/main.rl"
