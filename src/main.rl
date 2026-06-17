@@ -1,5 +1,5 @@
 get html_tags::tags
-get println from std::display
+get println from std::io
 
 fn main() {
     // ---- nav ----
