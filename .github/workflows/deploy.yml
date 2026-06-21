@@ -24,7 +24,7 @@ jobs:
           sudo cp target/release/rl /usr/local/bin/rl
 
       - name: Generate index.html
-        run: rl dev > index.html
+        run: rl dev | tail -n +2 > index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
