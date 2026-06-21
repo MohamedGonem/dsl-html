@@ -1,4 +1,4 @@
-get std::display::len
+get std::array::len
 get format, concat from std::str
 get is_null, to_string from std::types
 
